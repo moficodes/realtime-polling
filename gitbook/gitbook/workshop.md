@@ -1,5 +1,5 @@
 ---
-description: Traffic Management with Istio
+description: Realtime Polling Application
 ---
 
 # Introduction
