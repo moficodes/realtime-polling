@@ -6,6 +6,8 @@
 .pnp.js
 node_modules/
 
+*.zip
+
 # testing
 /coverage
 

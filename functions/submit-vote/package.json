@@ -1,0 +1,15 @@
+{
+  "name": "submit-vote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "submit-vote.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "moficodes@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@cloudant/cloudant": "^3.0.2",
+    "pubnub": "^4.21.7"
+  }
+}
