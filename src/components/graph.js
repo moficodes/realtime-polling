@@ -41,14 +41,16 @@ class Graph extends React.Component {
 
   async componentDidMount() {
     window.addEventListener("resize", this.updateWindowDimensions);
-    console.log(this.props);
-    await this.getQuestion(this.id);
+    var question = await this.getQuestion(this.id);
+    console.log(question);
+    if (!question.ok) {
+      this.setState({notFound: true})
+    }
     await this.getVotes(this.id);
     const self = this;
     this.pubnub.addListener({
       message: function(message) {
         // handle message
-        console.log(message);
         let index = message.message.index;
         var series = self.state.series;
         series[index]["data"][0] = series[index]["data"][0] + 1;
@@ -89,9 +91,11 @@ class Graph extends React.Component {
 
     data.map(function(key, index) {
       key.data[0] = uniqs[index];
+      return null;
     });
 
     this.setState({ series: data });
+    return { ok : true }
   }
 
   async getQuestion(id) {
@@ -132,6 +136,7 @@ class Graph extends React.Component {
     this.pubnub.unsubscribe({
       channels: ["channel-" + this.id]
     });
+    return {ok: true}
   }
 
   updateWindowDimensions = () => {
@@ -149,6 +154,9 @@ class Graph extends React.Component {
   };
 
   render() {
+    if(this.state.notFound) {
+      return <Redirect to={`/not-found`}/>;
+    }
     if (!this.state.doneLoading) {
       return <SpinLoader />;
     }

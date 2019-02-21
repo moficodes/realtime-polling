@@ -13,6 +13,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/create" component={Create} />
+        <Route exact path="/not-found" component={NoMatch} />
         <Route exact path="/:id" component={Vote} />
         <Route exact path="/:id/view" component={Graph} />
         <Route exact path="/" component={Home} />

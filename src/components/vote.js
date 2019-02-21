@@ -7,7 +7,6 @@ import secret from "../secret.json";
 
 class Vote extends React.Component {
   constructor(props) {
-    console.log(secret);
     super(props);
     const { match } = this.props;
     this.id = match.params.id;
@@ -17,7 +16,10 @@ class Vote extends React.Component {
     this._handleClick.bind(this);
   }
   async componentDidMount() {
-    await this.getQuestion(this.id);
+    var question = await this.getQuestion(this.id);
+    if (!question.ok){
+      this.setState({notFound: true});
+    }
   }
 
   async getQuestion(id) {
@@ -85,6 +87,9 @@ class Vote extends React.Component {
   }
 
   render() {
+    if(this.state.notFound) {
+      return <Redirect to={`/not-found`}/>;
+    }
     if (!this.state.doneLoading) {
       return <SpinLoader />;
     }
