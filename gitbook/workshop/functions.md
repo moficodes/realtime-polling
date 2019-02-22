@@ -62,5 +62,62 @@ Because we create that table when the question was created. I think we could exp
 * Create a record in the table.
 * Publish the message to PubNub.
 
+### Handle Message
+
+This function is used to deal with incoming message to twilio. The way this works is when a message is sent to our twilio number it invokes a web action and passed a bunch of data to related to the message to the function. That data will look something like this.
+
+```yaml
+"data": {
+    "AccountSid": "XXXXXXXXXXXXXXXXX",
+    "ApiVersion": "2010-04-01",
+    "Body": "Hello",
+    "From": "+12101234567",
+    "FromCity": "NEW YORK",
+    "FromCountry": "US",
+    "FromState": "NY",
+    "FromZip": "10010",
+    "MessageSid": "XXXXXX",
+    "MessagingServiceSid": "XXXXX",
+    "NumMedia": "0",
+    "NumSegments": "1",
+    "SmsMessageSid": "XXXXX",
+    "SmsSid": "XXXXX",
+    "SmsStatus": "received",
+    "To": "+12345678901",
+    "ToCity": "NEW YORK CITY",
+    "ToCountry": "US",
+    "ToState": "NY",
+    "ToZip": "",
+    "__ow_headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip",
+        "cache-control": "max-age=259200",
+        "cdn-loop": "cloudflare",
+        "cf-connecting-ip": "3.80.37.106",
+        "cf-ipcountry": "US",
+        "cf-ray": "4acaab98fc9f9fe4-IAD",
+        "cf-visitor": "{\"scheme\":\"https\"}",
+        "content-type": "application/x-www-form-urlencoded",
+        "host": "us-south.functions.cloud.ibm.com",
+        "user-agent": "TwilioProxy/1.1",
+        "x-forwarded-for": "3.80.37.106, 172.68.65.194",
+        "x-forwarded-host": "us-south.functions.cloud.ibm.com",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https",
+        "x-global-k8fdic-transaction-id": "XXXXXX",
+        "x-real-ip": "172.68.65.194",
+        "x-request-id": "XXXXXX",
+        "x-twilio-signature": "3bE9I/FWo8q2JgGY46pnmsQclxU="
+    },
+    "__ow_method": "post",
+    "__ow_path": ""
+}
+```
+
+Here `To` is the twilio number and `From` is where the message is being sent from.
+
+We will setup twilio stuff in the next step.
+
+* 
 
 
