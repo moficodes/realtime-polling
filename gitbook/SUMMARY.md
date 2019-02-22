@@ -8,7 +8,7 @@
 * [Workshop](workshop/README.md)
   * [PubNub](workshop/pubnub.md)
   * [Cloudant Database](workshop/cloudant-database.md)
-  * [Twilio](workshop/twilio.md)
   * [Functions](workshop/functions.md)
+  * [Twilio](workshop/twilio.md)
   * [React](workshop/react.md)
 
