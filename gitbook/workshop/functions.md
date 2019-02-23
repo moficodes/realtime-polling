@@ -67,7 +67,7 @@ Because we create that table when the question was created. I think we could exp
 This function is used to deal with incoming message to twilio. The way this works is when a message is sent to our twilio number it invokes a web action and passed a bunch of data to related to the message to the function. That data will look something like this.
 
 ```yaml
-"data": {
+"params": {
     "AccountSid": "XXXXXXXXXXXXXXXXX",
     "ApiVersion": "2010-04-01",
     "Body": "Hello",
@@ -118,6 +118,14 @@ Here `To` is the twilio number and `From` is where the message is being sent fro
 
 We will setup twilio stuff in the next step.
 
-* 
+This is what the handle-message function does.
+
+* Get user sent text from the `body` key of the params sent to the function. The above example has body _hello_ 
+* For the logic of dealing with the body text, we took a pretty simple approach. If the text is a `?` or has `help` in it, we will send information on how to use the app using message. If the message has one line we will try to get the question and set a variable with the question and option. If the message body has 2 lines we will use the first line as id and second line as the choice of vote.
+* If it fails at any reason we will set the variable with the appropriate message.
+* Return a `Twiml` message with out message variable that twilio will interpret and send a message to out user.
+
+
+
 
 
