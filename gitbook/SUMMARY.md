@@ -1,14 +1,14 @@
 # Table of contents
 
 * [Introduction](gitbook/workshop.md)
-* [Application Overview](application-overview/README.md)
-  * [Setup](application-overview/setup.md)
+* [Application Overview](application-overview.md)
 * [Serverless](serverless/README.md)
   * [Basics of Openwhisk](serverless/basics-of-openwhisk.md)
+* [Setup](setup/README.md)
+  * [PubNub](setup/pubnub.md)
+  * [Cloudant Database](setup/cloudant-database.md)
+  * [Twilio](setup/twilio.md)
 * [Workshop](workshop/README.md)
-  * [PubNub](workshop/pubnub.md)
-  * [Cloudant Database](workshop/cloudant-database.md)
   * [Functions](workshop/functions.md)
-  * [Twilio](workshop/twilio.md)
   * [React](workshop/react.md)
 
