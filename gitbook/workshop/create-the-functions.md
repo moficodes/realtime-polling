@@ -151,7 +151,7 @@ exports.main = main;
 
 ```text
 {
-    "id": "007",
+    "id": "001",
     "question": "Who was the best James Bond",
     "options": ["Daniel Craig", "Sean Connery", "Pierce Brosnan", "Roger Moore"]
 }
@@ -160,4 +160,101 @@ exports.main = main;
 * Invoke it once and you should  see something like this on the side.
 
 ![](../.gitbook/assets/image%20%283%29.png)
+
+* Invoke again however, you should see error. Because that was the logic we implemented.
+
+![](../.gitbook/assets/image%20%285%29.png)
+
+* We will enable the api gateway in a second.
+
+## From the CLI
+
+Let's create an action from the CLI. We will create the get-question action.
+
+* Login to IBM Cloud CLI
+
+```bash
+ibmcloud login
+```
+
+* Use your user name and password to login.
+
+{% hint style="info" %}
+you can also do `ibmcloud login --sso` to login using the single sign on method using your browser and access token.
+{% endhint %}
+
+* Target a cloud foundry org.
+
+```bash
+ibmcloud target --cf
+```
+
+* Check you have the cloud functions plugin enabled.
+* Run `ibmcloud fn` and it should show the help page for IBM Cloud plug-in.
+* To see the actions in our account run
+
+```bash
+ibmcloud fn action list
+```
+
+Output:
+
+```text
+actions
+/thisismofi@gmail.com_dev/workshop/create-question                     private nodejs:10
+```
+
+* We should see the other action we had created in the previous step.
+* To create the action lets change directory into the folder containing the `get-question.js` file. If you in the realtime-polling folder, it is under `function/get-question` . 
+
+```text
+cd functions/get-quesiton
+```
+
+* Create the action
+
+```text
+ibmcloud fn action create workshop/get-question get-question.js --kind nodejs:10
+```
+
+* We should be able to see the action with `ibmcloud fn action list` 
+* We will setup the default parameter next.
+
+```bash
+ibmcloud fn action update workshop/get-question --param username "YOUR-CLOUDANT-USERNAME-HERE" --param password "YOUR-CLOUDANT-PASSWORD-HERE"
+```
+
+* We can now invoke the action from the CLI as well
+
+```text
+ibmcloud fn action invoke workshop/get-question --param id 001
+```
+
+Output:
+
+```text
+{
+    "ok": true,
+    "payload": [
+        {
+            "_id": "001",
+            "options": [
+                "Daniel Craig",
+                "Sean Connery",
+                "Pierce Brosnan",
+                "Roger Moore"
+            ],
+            "question": "Who was the best James Bond"
+        }
+    ]
+}
+```
+
+* This is returning what we inserted in the previous step.
+
+## Action with External Dependency
+
+The `submit-vote` and `handle-message` action has external dependency. Actions with external dependencies can not be created using the web cli. We will use the terminal for those.
+
+ 
 
