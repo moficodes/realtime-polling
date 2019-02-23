@@ -1,32 +1,38 @@
 var fetch = require('node-fetch')
 
 async function main(params) {
-  var lines = params.Body.split("\n")
-  var body = "Invalid Request\nSend ID of thequestion for the quesiton\nSend id and answer separated by new line to submit answer";
-  if (lines.length === 1) {
-    var id = lines[0];
-    var response = await getQuestion(id, params.GQURL, params.GQSecret);
-    if (response.ok) {
-      var data = "";
-      for (var i = 0; i < response.payload.options.length; i++) {
-        data += `\n${i+1}. ${response.payload.options[i]}`
-      }
-      body = `${response.payload.question}${data}`;
-    } else {
-      body = "Question not found\nCheck the ID again"
-    }
-  } else if (lines.length === 2) {
-    var id = lines[0];
-    var index = parseInt(lines[1]);
-    if (isNaN(index)) {
-      body = "Not a valid choice of index. Should be a number."
-    } else {
-      var response = await submitAnswer(id, index, params.SQURL, params.SQSecret);
+  var body = "Send ID of the question to get the quesiton\nSend ID and choice separated by new line to submit vote";
+  var text = params.Body.toLowerCase();
+  if (text.indexOf("?")<0 && text.indexOf("help")<0){
+    var lines = text.split("\n")
+    if (lines.length === 1) {
+      var id = lines[0];
+      var response = await getQuestion(id, params.GQURL, params.GQSecret);
       if (response.ok) {
-        body = `Vote submitted for ID: ${id}\nYou chose option: ${index}`
+        var data = "";
+        for (var i = 0; i < response.payload.options.length; i++) {
+          data += `\n${i + 1}. ${response.payload.options[i]}`
+        }
+        body = `${response.payload.question}${data}`;
+      } else {
+        body = "Question not found\nCheck the ID again"
+      }
+    } else if (lines.length === 2) {
+      var id = lines[0];
+      var index = parseInt(lines[1]);
+      if (isNaN(index)) {
+        body = "Not a valid choice of index. Should be a number."
+      } else {
+        var response = await submitAnswer(id, index, params.SQURL, params.SQSecret);
+        if (response.ok) {
+          body = `Vote submitted for ID: ${id}\nYou chose option: ${index}`
+        } else {
+          body = `Vote could not be submitted for ID: ${id}. Check ID again`;
+        }
       }
     }
   }
+  
 
   console.log(body);
 
