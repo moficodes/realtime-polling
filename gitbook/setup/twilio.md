@@ -19,7 +19,7 @@
 * Click on `Create new Messaging Service` . Give it a name and for Use case select mixed.
 * Check the `PROCESS INBOUND MESSAGES` box. The would show two more text boxes, one for `Request URL` and one for `Fallback URL` This is where we would use our handle-message function webhook to handle incoming twilio message.
 
-![](../.gitbook/assets/image%20%283%29.png)
+![](../.gitbook/assets/image%20%284%29.png)
 
 This is all we need for now. We will come back to it in a bit.
 
