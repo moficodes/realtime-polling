@@ -21,7 +21,7 @@ To be able to follow along or complete this tutorial/workshop you need the follo
 #### Openwhisk
 
 * I would be using IBM Cloud Functions that uses Openwhisk.
-  * Sign up for IBM Cloud [https://ibm.biz/BdYan6](https://ibm.biz/BdYan6)
+  * [Sign up for IBM Cloud](https://ibm.biz/BdYan6) 
 
 **Or**
 

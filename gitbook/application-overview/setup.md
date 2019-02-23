@@ -44,6 +44,8 @@ For the lab we will need a few plugins.
 
 Install node
 
+[https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
 ## Setup Cloud Function
 
 IBM Cloud Functions should be setup with your account creation. 
