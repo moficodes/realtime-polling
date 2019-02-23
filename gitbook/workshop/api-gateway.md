@@ -26,4 +26,16 @@ If you are having trouble you can see how to get to functions in the previous st
 * We will skip OAuth for now, but you can add social login with IBM Cloud App ID, Google, Facebook or Github.
 * Finally we will leave CORS enabled. This will allow our react app to call this api.
 * From the get-quesiton api page, Click on Sharing on the left nav bar.
+* Click on Create API Key on Sharing Outside of Cloud Foundry Organizations section.
+
+![](../.gitbook/assets/screen-shot-2019-02-23-at-6.12.59-pm.png)
+
+* You should give it a name. I will name mine `get-question-api-key` . Click Create.
+* Once the api key is created you should see a API Portal Link.
+
+![](../.gitbook/assets/screen-shot-2019-02-23-at-6.16.06-pm.png)
+
+* If you click the API Portal link it will show you the API and how to access it via curl and 7 programming languages including Java, Node, Go, Python. 
+
+
 
