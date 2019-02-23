@@ -13,9 +13,9 @@ let cloudant = null;
 
 async function main(params) {
   if (params.id === undefined || params.question === undefined || params.options === undefined) {
-      return {
-        error: "Not Enough Arguments",
-      }
+    return {
+      error: "Not Enough Arguments",
+    }
   }
 
   const reused = cloudant != null;
@@ -56,17 +56,44 @@ async function main(params) {
     options: params.options,
   }
   const result = await database.insert(data);
-  console.log(result.ok);
-  if (result.ok) {
-    dbcreate = await cloudant.db.create("questions-" + id);
+  if (!result.ok) {
     return {
-      ok: true,
-      payload: id,
-    }
+      error: "Insertion failed",
+    };
   }
+
+  const dbcreate = await cloudant.db.create("questions-" + id);
+
+  if (!dbcreate.ok) {
+    return {
+      error: "DB Create failed"
+    };
+  }
+
+  const qdb = cloudant.db.use("questions-" + id);
+
+  var idx = {
+    index: {
+      fields: ['timestamp']
+    },
+    name: 'timestamp-json',
+    type: 'json',
+  }
+
+
+  const idxcreate = await qdb.index(idx);
+
+
+  if (!idxcreate.result === 'created') {
+    return {
+      error: "Can Not Create Index"
+    };
+  }
+
   return {
-    error: "Insertion failed",
-  };
+    ok: true,
+    success: true
+  }
 }
 
 exports.main = main;
