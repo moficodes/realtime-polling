@@ -254,7 +254,35 @@ Output:
 
 ## Action with External Dependency
 
-The `submit-vote` and `handle-message` action has external dependency. Actions with external dependencies can not be created using the web cli. We will use the terminal for those.
+The `submit-vote`  action has external dependency. Actions with external dependencies can not be created using the web cli. We will use the terminal for this.
 
- 
+* Change directory in the submit-vote folder. Install the dependencies.
+
+```bash
+npm install
+```
+
+* Package the files into a zip. 
+
+```text
+zip -r submit-vote.zip *
+```
+
+* The `zip` command will only work in a MacOS or linux environment. For windows users use a third party tool like 7zip or look at this [stack-overflow answer ](https://stackoverflow.com/a/18180154/10272405)
+* Create the action as you would. 
+
+```text
+ibmcloud fn action create workshop/submit-vote submit-vote.zip --kind nodejs:10
+```
+
+* This action needs 5 default parameters. The Cloudant `username` & `password` as well as the `publish_key`, `subscribe_key` and `secret_key` key from pubnub. Look back at the pubnub section in setup to find these.
+* You can setup the default parameters from either the CLI or the Web UI.
+* Just for demonstrations sake, lets update the default param from both place.
+
+```bash
+ic fn action update workshop/submit-vote \ 
+--param publish_key "YOUR PUBNUM PUBLISH KEY" \ 
+--param subscribe_key "YOUR PUBNUB SUBSCRIBE KEY" \ 
+--param secret_key "YOUR PUBNUB SECRET KEY"
+```
 
