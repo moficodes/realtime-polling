@@ -9,5 +9,6 @@
   * [Twilio](setup/twilio.md)
   * [Functions](setup/functions.md)
   * [React](setup/react.md)
-* [Workshop](workshop.md)
+* [Workshop](workshop/README.md)
+  * [Create the Functions](workshop/create-the-functions.md)
 
