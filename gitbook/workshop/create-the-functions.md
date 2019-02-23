@@ -277,12 +277,46 @@ ibmcloud fn action create workshop/submit-vote submit-vote.zip --kind nodejs:10
 
 * This action needs 5 default parameters. The Cloudant `username` & `password` as well as the `publish_key`, `subscribe_key` and `secret_key` key from pubnub. Look back at the pubnub section in setup to find these.
 * You can setup the default parameters from either the CLI or the Web UI.
-* Just for demonstrations sake, lets update the default param from both place.
+
+#### **CLI**
 
 ```bash
-ic fn action update workshop/submit-vote \ 
+ibmcloud fn action update workshop/submit-vote \ 
 --param publish_key "YOUR PUBNUM PUBLISH KEY" \ 
 --param subscribe_key "YOUR PUBNUB SUBSCRIBE KEY" \ 
---param secret_key "YOUR PUBNUB SECRET KEY"
+--param secret_key "YOUR PUBNUB SECRET KEY" \ 
+--param username "CLOUDANT USERNAME" \ 
+--param password "CLOUDANT PASSWORD"
 ```
+
+#### Web UI
+
+* Go to Functions. Click on the submit-vote action from the list of actions. Go to parameters. Add the parameters.
+
+![](../.gitbook/assets/screen-shot-2019-02-23-at-4.46.41-pm.png)
+
+## Finish The Rest
+
+This leaves two function. `get-all-votes` and `handle-message`. This do not have any external dependencies. So feel free to create it from the cli or the web ui.
+
+{% hint style="info" %}
+The get-all-votes function needs two default parameter. Cloudant `username` and  `password`. We already went over how we can add those.
+{% endhint %}
+
+## Note About External Dependency
+
+If you look at the code we have a few functions with dependencies on `Cloudant` and one with `Openwhisk` . These were not considered external dependencies in IBM Cloud Functions. There are a bunch of packages that come preinstalled in the environment. 
+
+[See this page for a complete list](https://cloud.ibm.com/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_javascript_environments_10)
+
+Some of the packages are-
+
+* [async v2.6.1](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
+* [mongodb v3.1.12](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
+* [mysql v2.16.0](https://www.npmjs.com/package/mysql) - This is a node.js driver for mysql.
+* [openwhisk v3.18.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
+* [@cloudant/cloudant v3.0.2](https://www.npmjs.com/package/@cloudant/cloudant) - This is the official Cloudant library for Node.js.
+* [redis v2.8.0](https://www.npmjs.com/package/redis) - This is a complete and feature rich Redis client for Node.js.
+* [request v2.88.0](https://www.npmjs.com/package/request) - Request is designed to be the simplest way possible to make HTTP calls.
+* [twilio v3.27.1](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
 
