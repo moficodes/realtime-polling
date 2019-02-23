@@ -52,7 +52,7 @@ The real time portion of the app depends on PubNub. PubNub gives us a publish an
 
 ### App Flow
 
-![](.gitbook/assets/flow.png)
+![](.gitbook/assets/flow%20%281%29.png)
 
 This is roughly how the app works.
 
