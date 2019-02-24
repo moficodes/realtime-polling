@@ -25,7 +25,7 @@ In this section we will create our function. We will see how to create function 
 
 ![](../.gitbook/assets/screen-shot-2019-02-23-at-2.16.25-pm.png)
 
-* Give the action a name. For out first action we will create `create question` action. We will also put this action in a package called. Package helps us organize our functions. For runtime select Node.js 10
+* Give the action a name. For out first action we will create `create question` action. We will also put this action in a package called `workshop`. Package helps us organize our functions. For runtime select Node.js 10
 
 ![](../.gitbook/assets/image%20%282%29.png)
 
