@@ -11,6 +11,7 @@
 * [Workshop](workshop/README.md)
   * [Create the Functions](workshop/create-the-functions.md)
   * [API Gateway](workshop/api-gateway.md)
+  * [Putting It All Together](workshop/putting-it-all-together.md)
   * [Twilio Webhook](workshop/twilio-webhook.md)
 * [Basics of Openwhisk](basics-of-openwhisk.md)
 
