@@ -163,7 +163,7 @@ exports.main = main;
 
 * Invoke again however, you should see error. Because that was the logic we implemented.
 
-![](../.gitbook/assets/image%20%285%29.png)
+![](../.gitbook/assets/image%20%287%29.png)
 
 * We will enable the api gateway in a second.
 

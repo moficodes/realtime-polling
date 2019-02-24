@@ -24,4 +24,19 @@
 * The URL and API keys we got in the previous step
 {% endhint %}
 
-* 
+* If everything else worked, we should be able to now be able to search for our question that we created.
+* Type in the ID and press enter.
+* For the question we created the ID was "001"
+
+![](../.gitbook/assets/image%20%288%29.png)
+
+* Open a new browser window, go to the question again then go to `Watch The Votes` , you will see a bar graph of the question and the options. Vote on one of the screen, you can see the numbers rise on the other screen. 
+
+![](../.gitbook/assets/image%20%286%29.png)
+
+* And with that the application is done. 
+
+But wait I did promise you we will do that with twilio too. 
+
+Lets do that in the next section.
+

@@ -19,4 +19,7 @@ For handling twilio messages we will convert the handle message function into a 
 * From your phone text the twilio number.
 * If you text a `?` it should reply back with some helpful text.
 * If you text a `id` of a question. It will reply with the question and options.
+* If you text a `id` and a `index` separated by a new line vote will be submitted for that id  for that index.
+
+
 
