@@ -38,6 +38,8 @@ If you are having trouble you can see how to get to functions in the previous st
 ![](../.gitbook/assets/screen-shot-2019-02-23-at-6.16.06-pm.png)
 
 * If you click the API Portal link it will show you the API and how to access it via curl and 7 programming languages including Java, Node, Go, Python. 
+* Go to API explorer to find the Endpoint for the API.
+* Make a note of the `API Key` and the `API Endpoint` . We will need these for our react application.
 
 ### Get All Votes API
 
