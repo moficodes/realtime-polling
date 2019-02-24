@@ -10,5 +10,6 @@
   * [React](setup/react.md)
 * [Workshop](workshop/README.md)
   * [Create the Functions](workshop/create-the-functions.md)
+  * [API Gateway](workshop/api-gateway.md)
 * [Basics of Openwhisk](basics-of-openwhisk.md)
 
