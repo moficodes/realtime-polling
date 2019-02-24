@@ -20,8 +20,6 @@ async function main(params) {
     }
   }
 
-  const reused = cloudant != null;
-
   var username = params.username;
   var password = params.password;
   if (cloudant == null) {
@@ -31,7 +29,7 @@ async function main(params) {
     });
   }
 
-  const id = params.id;
+  const id = String(params.id);
   const dbname = "questions-" + id;
 
   var results = await cloudant.db.list();
@@ -64,14 +62,17 @@ async function main(params) {
     })
   }
 
-  var publish = await pubnub.publish({
+  var publishBody = {
     message: record,
-    channel: "channel-"+id,
+    channel: "channel-" + id,
     sendByPost: false,
     storeInHistory: false
-  });
+  };
 
-  console.log(publish)
+  var publish = await pubnub.publish(publishBody);
+
+  console.log(publish);
+  console.log(publishBody);
 
   return {
     "success": true,

@@ -45,23 +45,34 @@ class Vote extends React.Component {
 
   async _handleClick(index) {
     this.setState({ votingDisabled: true });
+    const body = {
+      id: this.id,
+      index: index,
+    };
+
+    const jsonBody = JSON.stringify(body);
     var result = await fetch(secret.SUBMIT_VOTE_URL,
       {
-        body: `{"id":${this.id},"index": ${index}}`,
+        body: jsonBody,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "X-Ibm-Client-Id":  secret.SUBMIT_VOTE
+          "X-Ibm-Client-Id":  secret.SUBMIT_VOTE,
+          "X-Debug-Mode": true
         },
         method: "POST"
       }
     );
+
     const json = await result.json();
     console.log(json);
     if (!json.success) {
       return { error: "Json Error" };
     }
     this.setState({ votingDisabled: false });
+    return {
+      ok: true
+    }
   }
 
   renderButtons() {

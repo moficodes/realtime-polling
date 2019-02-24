@@ -1,9 +1,6 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import classNames from "classnames";
 import { Redirect } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import SearchIcon from "@material-ui/icons/Search";
 
 class Home extends React.Component {
   constructor(props) {

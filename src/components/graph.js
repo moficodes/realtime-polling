@@ -42,7 +42,7 @@ class Graph extends React.Component {
   async componentDidMount() {
     window.addEventListener("resize", this.updateWindowDimensions);
     var question = await this.getQuestion(this.id);
-    console.log(question);
+
     if (!question.ok) {
       this.setState({notFound: true})
     }
@@ -77,8 +77,6 @@ class Graph extends React.Component {
     if (!json.ok) {
       return { error: json.error };
     }
-
-    // console.log(json);
 
     var uniqs = json.payload.reduce((acc, val) => {
       acc[val.index] = acc[val.index] === undefined ? 1 : (acc[val.index] += 1);
