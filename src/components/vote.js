@@ -23,9 +23,7 @@ class Vote extends React.Component {
   }
 
   async getQuestion(id) {
-    const result = await fetch(
-      "https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/7cb5b3ddcb53cef0f88089689303ace98f75bf7ddf8c1eed6bc70f10a42d550f/get-quesiton/?id=" +
-        id,
+    const result = await fetch(secret.GET_QUESTION_URL+id,
       {
         headers: {
           Accept: "application/json",
@@ -47,8 +45,7 @@ class Vote extends React.Component {
 
   async _handleClick(index) {
     this.setState({ votingDisabled: true });
-    var result = await fetch(
-      "https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/7cb5b3ddcb53cef0f88089689303ace98f75bf7ddf8c1eed6bc70f10a42d550f/submit-vote/",
+    var result = await fetch(secret.SUBMIT_VOTE_URL,
       {
         body: `{"id":${this.id},"index": ${index}}`,
         headers: {
