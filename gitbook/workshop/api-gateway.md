@@ -2,6 +2,8 @@
 
 We have our functions, but how do we use it in our app? API gateway is great way to manage access to our function. 
 
+### Get Question API
+
 * From IBM Cloud dashboard page, go to functions. 
 
 {% hint style="info" %}
@@ -37,5 +39,13 @@ If you are having trouble you can see how to get to functions in the previous st
 
 * If you click the API Portal link it will show you the API and how to access it via curl and 7 programming languages including Java, Node, Go, Python. 
 
+### Get All Votes API
 
+Follow above instruction for  create API for get-all-votes function.
+
+### Submit Vote API
+
+You can follow almost all the steps for submit-vote function as well. Just for HTTP verb use POST.
+
+If you are wondering why not get here as well.[ Read This](https://stackoverflow.com/a/46614/10272405).
 
