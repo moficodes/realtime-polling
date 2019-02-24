@@ -1,19 +1,39 @@
-var fetch = require('node-fetch')
+/**
+ *
+ * main() will be run when you invoke this action
+ *
+ * @param Cloud Functions actions accept a single parameter, which must be a JSON object.
+ *
+ * @return The output of this action, which must be a JSON object.
+ *
+ */
+const openwhisk = require('openwhisk');
 
 async function main(params) {
+  var ow = openwhisk()
   var body = "Send ID of the question to get the quesiton\nSend ID and choice separated by new line to submit vote";
   var text = params.Body.toLowerCase();
-  if (text.indexOf("?")<0 && text.indexOf("help")<0){
+  console.log(text);
+  if (text.indexOf("?") < 0 && text.indexOf("help") < 0) {
     var lines = text.split("\n")
     if (lines.length === 1) {
-      var id = lines[0];
-      var response = await getQuestion(id, params.GQURL, params.GQSecret);
+      var id = String(lines[0]);
+      const param = {
+        id: id,
+      };
+      var response = await ow.actions.invoke({
+        name: 'rt-polling/GetQuestion',
+        blocking: true,
+        result: true,
+        params: param
+      });
       if (response.ok) {
         var data = "";
-        for (var i = 0; i < response.payload.options.length; i++) {
-          data += `\n${i + 1}. ${response.payload.options[i]}`
+        for (var i = 0; i < response.payload[0].options.length; i++) {
+          data += `\n${i + 1}. ${response.payload[0].options[i]}`
         }
-        body = `${response.payload.question}${data}`;
+        body = `${response.payload[0].question}${data}`;
+
       } else {
         body = "Question not found\nCheck the ID again"
       }
@@ -23,8 +43,19 @@ async function main(params) {
       if (isNaN(index)) {
         body = "Not a valid choice of index. Should be a number."
       } else {
-        var response = await submitAnswer(id, index, params.SQURL, params.SQSecret);
-        if (response.ok) {
+        const param = {
+          id: id,
+          index: index - 1,
+        }
+        var response = await ow.actions.invoke({
+          name: 'rt-polling/submit',
+          blocking: true,
+          result: true,
+          params: param
+        });
+        console.log(response);
+
+        if (response.success) {
           body = `Vote submitted for ID: ${id}\nYou chose option: ${index}`
         } else {
           body = `Vote could not be submitted for ID: ${id}. Check ID again`;
@@ -32,59 +63,14 @@ async function main(params) {
       }
     }
   }
-  
+
 
   console.log(body);
 
   return {
     headers: {
-        'Content-Type': 'text/xml'
+      'Content-Type': 'text/xml'
     },
     body: '<Response><Message>' + body + '</Message></Response>'
   };
 }
-
-async function submitAnswer(id, index, url, secret) {
-  var result = await fetch(url, {
-    body: `{"id":${id},"index": ${index-1}}`,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "X-Ibm-Client-Id": secret
-    },
-    method: "POST"
-  });
-  const json = await result.json();
-  console.log(json);
-  if (!json.success) {
-    return {
-      error: "Json Error"
-    };
-  }
-  return {
-    ok: true
-  }
-}
-
-async function getQuestion(id, endpoint, secret) {
-  let url = endpoint + id;
-  let response = await fetch(url, {
-    headers: {
-      'X-Ibm-Client-Id': secret,
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  });
-  let data = await response.json();
-  if (!data.ok) {
-    return {
-      error: "No data found"
-    };
-  }
-  return {
-    ok: true,
-    payload: data.payload[0]
-  }
-}
-
-exports.main = main;
