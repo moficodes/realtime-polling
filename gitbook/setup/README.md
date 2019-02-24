@@ -56,7 +56,7 @@ Okay, Finally we are ready to get started with the workshop. If something is sti
 
 ## Clone the repository
 
-In this step, we'll clone the istio101 and guestbook repository. Istio101 holds istio related yaml files. Guestbook is the application we will deploy.
+In this step, we'll clone the realtime-polling  git repository. This repository contains both the web application and code for our functions that we will deploy.
 
 ```bash
 git clone https://github.com/moficodes/realtime-polling.git
