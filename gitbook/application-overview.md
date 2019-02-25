@@ -25,7 +25,7 @@ To be able to follow along or complete this tutorial/workshop you need the follo
 
 **Or**
 
-* [Openwhish Local Installation](https://openwhisk.apache.org/documentation.html#openwhisk_deployment) for testing
+* [Openwhisk Local Installation](https://openwhisk.apache.org/documentation.html#openwhisk_deployment) for testing
   * For setting up openwhisk local you need
     * [docker](https://docs.docker.com/docker-for-mac/)
     * [docker-compose](https://docs.docker.com/docker-for-mac/)
