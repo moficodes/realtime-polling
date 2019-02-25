@@ -23,7 +23,7 @@ class Vote extends React.Component {
   }
 
   async getQuestion(id) {
-    const result = await fetch(secret.GET_QUESTION_URL+id,
+    const result = await fetch(secret.GET_QUESTION_URL + "?id="+id,
       {
         headers: {
           Accept: "application/json",

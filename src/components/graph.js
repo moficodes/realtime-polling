@@ -64,7 +64,7 @@ class Graph extends React.Component {
   }
 
   async getVotes(id) {
-    var result = await fetch(secret.GET_VOTES_URL + id,
+    var result = await fetch(secret.GET_VOTES_URL + "?id=" + id,
       {
         headers: {
           Accept: "application/json",
@@ -95,7 +95,7 @@ class Graph extends React.Component {
   }
 
   async getQuestion(id) {
-    const result = await fetch(secret.GET_QUESTION_URL + id,
+    const result = await fetch(secret.GET_QUESTION_URL + "?id=" + id,
       {
         headers: {
           Accept: "application/json",
