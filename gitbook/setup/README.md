@@ -30,6 +30,10 @@ iex(New-Object Net.WebClient).DownloadString('https://clis.ng.bluemix.net/instal
 {% endtab %}
 {% endtabs %}
 
+{% hint style="info" %}
+Some windows user may see an error saying _"Exception calling "DownloadString" with "1" argument\(s\): "The underlying connection was closed: An unexpected error occurred on a send." At line:1 char:1"_  Its an issue with Powershell Mutual TLS Setting. Use installer found on the link right above.
+{% endhint %}
+
 ## **Install IBM CLI Plugins**
 
 For the lab we will need a few plugins.
