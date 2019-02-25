@@ -280,14 +280,40 @@ ibmcloud fn action create workshop/submit-vote submit-vote.zip --kind nodejs:10
 
 #### **CLI**
 
+{% tabs %}
+{% tab title="MacOS/Linux" %}
 ```bash
 ibmcloud fn action update workshop/submit-vote \ 
---param publish_key "YOUR PUBNUM PUBLISH KEY" \ 
+--param publish_key "YOUR PUBNUB PUBLISH KEY" \ 
 --param subscribe_key "YOUR PUBNUB SUBSCRIBE KEY" \ 
 --param secret_key "YOUR PUBNUB SECRET KEY" \ 
 --param username "CLOUDANT USERNAME" \ 
 --param password "CLOUDANT PASSWORD"
 ```
+{% endtab %}
+
+{% tab title="Windows CMD" %}
+```bash
+ibmcloud fn action update workshop/submit-vote ^
+--param publish_key "YOUR PUBNUB PUBLISH KEY" ^ 
+--param subscribe_key "YOUR PUBNUB SUBSCRIBE KEY" ^ 
+--param secret_key "YOUR PUBNUB SECRET KEY" ^ 
+--param username "CLOUDANT USERNAME" ^ 
+--param password "CLOUDANT PASSWORD"
+```
+{% endtab %}
+
+{% tab title="Windows Powershell" %}
+```bash
+ibmcloud fn action update workshop/submit-vote `
+--param publish_key "YOUR PUBNUB PUBLISH KEY" ` 
+--param subscribe_key "YOUR PUBNUB SUBSCRIBE KEY" ` 
+--param secret_key "YOUR PUBNUB SECRET KEY" ` 
+--param username "CLOUDANT USERNAME" ` 
+--param password "CLOUDANT PASSWORD"
+```
+{% endtab %}
+{% endtabs %}
 
 #### Web UI
 
