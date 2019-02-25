@@ -14,3 +14,11 @@ description: Realtime Polling Application
 * 7:00 PM - 7:20 PM Setup Steps
 * 7:20 PM - 8:20 PM Workshop
 
+### Special Thanks To
+
+* Mohammed Hossain 
+
+{% hint style="info" %}
+He spent a lot of time running through the entire workshop and helped uncover many minor issues, specially around differences in the windows environment
+{% endhint %}
+
