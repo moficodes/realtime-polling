@@ -22,7 +22,7 @@ async function main(params) {
         id: id,
       };
       var response = await ow.actions.invoke({
-        name: 'rt-polling/GetQuestion',
+        name: 'workshop/get-question',
         blocking: true,
         result: true,
         params: param
@@ -48,7 +48,7 @@ async function main(params) {
           index: index - 1,
         }
         var response = await ow.actions.invoke({
-          name: 'rt-polling/submit',
+          name: 'workshop/submit-vote',
           blocking: true,
           result: true,
           params: param
