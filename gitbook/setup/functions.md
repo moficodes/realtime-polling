@@ -2,6 +2,8 @@
 
 I am using a total of 5 functions to manage the backend of this application. 
 
+There are no actual setup in this page. But you should read this to know what each of the functions do and why they are there.
+
 They are:
 
 * create-quesition
