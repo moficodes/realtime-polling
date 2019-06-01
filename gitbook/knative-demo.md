@@ -87,6 +87,10 @@ cd ../Build
 ```
 
 ```text
+kubectl apply -f kaniko.yaml
+```
+
+```text
 kubectl apply -f build-v1.yaml
 ```
 
@@ -96,6 +100,48 @@ kubectl apply -f build-v2.yaml
 
 ```text
 ibmcloud cr images | grep mofi/fib-knative
+```
+
+##  Build and Deploy
+
+```text
+cd ../build-and-deploy
+```
+
+```text
+kubectl apply -f kaniko.yaml
+```
+
+```text
+kubectl get buildtemplates.build.knative.dev
+```
+
+```text
+kubectl apply -f service.yaml
+```
+
+```text
+watch kubectl get po
+```
+
+```text
+kubectl get ksvc
+```
+
+```text
+export MY_DOMAIN=
+```
+
+```text
+ibmcloud cr images | grep mofi/fib-knative
+```
+
+```text
+curl $MY_DOMAIN/5
+```
+
+```text
+kubectl delete -f service.yaml
 ```
 
 ## Blue Green Deployment
@@ -148,44 +194,7 @@ kubectl apply -f route-v1-0-v2-100.yaml
 while sleep 0.2; do curl "$MY_DOMAIN/1"; done
 ```
 
-##  Build and Deploy
-
-```text
-cd ../build-and-deploy
-```
-
-```text
-kubectl apply -f kaniko.yaml
-```
-
-```text
-kubectl get buildtemplates.build.knative.dev
-```
-
-```text
-kubectl apply -f service.yaml
-```
-
-```text
-watch kubectl get po
-```
-
-```text
-kubectl get ksvc
-```
-
-```text
-export MY_DOMAIN=$(kubectl get route \ 
--o=jsonpath={.items[0].status.domain})
-```
-
-```text
-ibmcloud cr images | grep mofi/fib-knative
-```
-
-```text
-curl $MY_DOMAIN/5
-```
+## NOT GONNA DO THAT
 
 ## Blue Green with knctl
 
