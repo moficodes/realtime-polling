@@ -15,4 +15,5 @@
   * [Twilio Webhook](workshop-1/twilio-webhook.md)
 * [Next Steps](next-steps.md)
 * [Basics of Openwhisk](basics-of-openwhisk.md)
+* [Knative Demo](knative-demo.md)
 
