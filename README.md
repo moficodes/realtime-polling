@@ -33,7 +33,7 @@ The real time portion of the app depends on PubNub. PubNub gives us a publish an
 
 # Estimated time
 
-From end to end this would take 45-55 min.
+From end to end this would take 60-90 min.
 
 
 # Steps
