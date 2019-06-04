@@ -294,7 +294,9 @@ This is what the handle-message function does.
 - In Setup you already should have the git repo cloned. Go into the `realtime-polling` folder that was cloned.
     cd realtime-polling
 - Copy the `secret.template.json` file to `secret.json`
+    ```
     cp src/secret.template.json src/secret.json
+    ```
 - This is what the `secret.json` file should contain
 ```   
     {
