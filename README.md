@@ -58,11 +58,11 @@ So our app works online. But can we make this work offline. Thats where twilio c
 
 In this section, you will create your own IBM Cloud account, and then get access to a IBM Cloud Lab account which contains pre-provisioned clusters. Each lab attendee will be granted access to one cluster.
 
-## Create your IBM Cloud account
+## Step 1: Create your IBM Cloud account
 
 [Sign up for IBM Cloud](https://ibm.biz/Bd2Gpv)
 
-## Install IBM Cloud CLI
+## Step 2: Install IBM Cloud CLI
 
 You use the [IBM Cloud CLI installer](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use) or the OS-specific shell installers below.
 MacOS
@@ -73,25 +73,25 @@ Windows
 
 Some windows user may see an error saying *"Exception calling "DownloadString" with "1" argument(s): "The underlying connection was closed: An unexpected error occurred on a send." At line:1 char:1"*  Its an issue with Powershell Mutual TLS Setting. Use installer found on the link right above.
 
-## Install IBM CLI Plugins
+## Step 3: Install IBM CLI Plugins
 
 For the lab we will need a few plugins.
 
 - Cloud Functions
     ibmcloud plugin install cloud-functions
-## Install Node NPM
+## Step 4: Install Node NPM
 
 Install node
 
 https://nodejs.org/en/download/
 
-## Setup Cloud Function
+## Step 5: Setup Cloud Function
 
 IBM Cloud Functions should be setup with your account creation. 
 If for some reason the cloud foundry space doesn't get created automatically, setup IBM Cloud Functions [https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp/ex0%20-%20setting%20up%20development%20environment](https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp/ex0%20-%20setting%20up%20development%20environment)
 Okay, Finally we are ready to get started with the workshop. If something is still missing work through this thorough bootcamp step by step. [https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp](https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp)
 
-## Clone the repository
+## Step 6: Clone the repository
 
 In this step, we'll clone the realtime-polling  git repository. This repository contains both the web application and code for our functions that we will deploy.
 
@@ -104,13 +104,13 @@ Include links to other resources that may be of interest to someone who is readi
 
 
 
-## PubNub
+## Step 6: PubNub
 1. Go to [https://dashboard.pubnub.com/signup](https://dashboard.pubnub.com/signup) to sign up for a PubNub acc. Their Free Tier should give us enough for our project and to tinker.
 2. Once you have signed up and logged in. You should then create a new App.
 3. In your app create a new keyset. Key set has a `pubkey`, a `subkey` and a `secretkey`. We will need this information in future steps.
 
 
-## Cloudant Database
+## Step 7: Cloudant Database
 
 In this step we will create a lite cloudant database.
 
@@ -149,7 +149,9 @@ In this step we will create a lite cloudant database.
 10. Name the database `questions` Just like the database I already have. The reason we are doing this is when we create a question we would put it in here. And I did not want to check for database existing every-time when the function ran. This will make more sense when we look at the function. For now just take my word for it. It's also a place to view your data. If you ever need to look closely at your data this is where you will do so.
 
 
-## Twilio
+## Step 8: Twilio
+**Twilio has a trial account where they give 15$ credit to try twilio out. With that account you do not need a credit card but the credit will deplete as you use the trial account. Check the pricing per message on twilio for more information.**
+
 - Sign Up for twilio. [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
 - In the create a project window change tab to select product.
 - Select Programmable SMS and go in the bottom to select next.
@@ -172,7 +174,7 @@ In this step we will create a lite cloudant database.
 This is all we need for now. We will come back to it in a bit.
 
 
-## Functions
+## Step 9: Functions
 
 I am using a total of 5 functions to manage the backend of this application. 
 There are no actual setup in this page. But you should read this to know what each of the functions do and why they are there.
@@ -183,7 +185,7 @@ They are:
 - get-all-votes
 - submit-vote
 - handle-message
-## Task of each function
+### Task of each function
 
 **Create Question**
 This function does exactly as the name suggests. It creates a new question. It does a little more that that. The things this function has to accomplish are following.
@@ -231,7 +233,7 @@ Because we create that table when the question was created. I think we could exp
 
 **Handle Message**
 This function is used to deal with incoming message to twilio. The way this works is when a message is sent to our twilio number it invokes a web action and passed a bunch of data to related to the message to the function. That data will look something like this.
-
+```
     "params": {
         "AccountSid": "XXXXXXXXXXXXXXXXX",
         "ApiVersion": "2010-04-01",
@@ -277,7 +279,7 @@ This function is used to deal with incoming message to twilio. The way this work
         "__ow_method": "post",
         "__ow_path": ""
     }
-
+```
 Here `To` is the twilio number and `From` is where the message is being sent from.
 We will setup twilio stuff in the next step.
 This is what the handle-message function does.
@@ -288,12 +290,13 @@ This is what the handle-message function does.
 - Return a `Twiml` message with out message variable that twilio will interpret and send a message to out user.
 
 
-## React
+## Step 10: React
 - In Setup you already should have the git repo cloned. Go into the `realtime-polling` folder that was cloned.
     cd realtime-polling
 - Copy the `secret.template.json` file to `secret.json`
     cp src/secret.template.json src/secret.json
 - This is what the `secret.json` file should contain
+```   
     {
       "SUBMIT_VOTE": "submit-vote-api-key",
       "SUBMIT_VOTE_URL": "submit-vote-api-url",
@@ -305,6 +308,7 @@ This is what the handle-message function does.
       "PUBLISH_KEY": "pubnub-publish-key",
       "SECRET_KEY": "pubnub-secret-key"
     }
+ ```
 - We will complete this file later. But we need this to start the application.
 - Install the application dependencies
     npm install
@@ -314,11 +318,11 @@ This is what the handle-message function does.
 
 
 
-## Create the Functions
+## Step 11: Create the Functions
 
 In this section we will create our function. We will see how to create function using both the web ui and cli.
 
-## From the Web UI
+### From the Web UI
 - Log into [IBM Cloud](https://cloud.ibm.com/)
 - Click the top left hamburger.
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZQiXj8cESIbJv-Gx03%2F-LZQkKT9SMoaetb41w-z%2FScreen%20Shot%202019-02-23%20at%202.06.06%20PM.png?alt=media&token=9c5f9f2c-167e-4733-8c33-f10dfbe2e92d)
@@ -362,7 +366,8 @@ First time you would have to create package to get the package. For any other ti
     cd functions
 - All five functions are in their own. Copy the `create-questio.js` file from the create-question folder.
 - Paste it in the web editor.
-    /**
+ ```
+     /**
      *
      * main() will be run when you invoke this action
      *
@@ -424,6 +429,7 @@ First time you would have to create package to get the package. For any other ti
       };
     }
     exports.main = main;
+```
 - From the code we can see we are expecting params object to have 5 things. `id`, `question`, `options`, `username` and `password`. First 3 will be passed in when the function is being called via api. Username and Password we will set now using default parameter. 
 - Go to `parametes` from the left nav bar.
 - We will need the user name and password created in the `Cloudant Database` step. 
@@ -432,11 +438,14 @@ First time you would have to create package to get the package. For any other ti
 - Go back to the code tab.
 - Click on change input.
 - Paste the following JSON and Apply.
-    {
+```
+{
         "id": "001",
         "question": "Who was the best James Bond",
         "options": ["Daniel Craig", "Sean Connery", "Pierce Brosnan", "Roger Moore"]
-    }
+    
+}
+```
 - Invoke it once and you should  see something like this on the side.
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZQrySXgW6DQNc0qtUU%2F-LZQxtjSSDzKQA8qDknl%2Fimage.png?alt=media&token=626d85be-eb12-4caf-ab33-527a2a9835c7)
 
@@ -444,18 +453,22 @@ First time you would have to create package to get the package. For any other ti
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZQxy34llq_osGfF0T9%2F-LZQy44335-8lHgfZGBu%2Fimage.png?alt=media&token=232513d9-5fbf-40b1-8306-c79462a99cba)
 
 - We will enable the api gateway in a second.
-## From the CLI
+### From the CLI
 
 Let's create an action from the CLI. We will create the get-question action.
 
 - Login to IBM Cloud CLI
+    ```
     ibmcloud login
+    ```
 - Use your user name and password to login.
 
 you can also do `ibmcloud login --sso` to login using the single sign on method using your browser and access token.
 
 - Target a cloud foundry org.
+    ```
     ibmcloud target --cf
+    ```
 - Check you have the cloud functions plugin enabled.
 - Run `ibmcloud fn` and it should show the help page for IBM Cloud plug-in.
 - To see the actions in our account run
@@ -467,17 +480,21 @@ Output:
     /thisismofi@gmail.com_dev/workshop/create-question                     private nodejs:10
 - We should see the other action we had created in the previous step.
 - To create the action lets change directory into the folder containing the `get-question.js` file. If you in the realtime-polling folder, it is under `function/get-question` . 
+    ```
     cd functions/get-quesiton
+    ```
 - Create the action
     ibmcloud fn action create workshop/get-question get-question.js --kind nodejs:10
 - We should be able to see the action with `ibmcloud fn action list` 
 - We will setup the default parameter next.
+    ```
     ibmcloud fn action update workshop/get-question --param username "YOUR-CLOUDANT-USERNAME-HERE" --param password "YOUR-CLOUDANT-PASSWORD-HERE"
+    ```
 - We can now invoke the action from the CLI as well
     ibmcloud fn action invoke workshop/get-question --param id 001
 
 Output:
-
+```
     {
         "ok": true,
         "payload": [
@@ -493,15 +510,20 @@ Output:
             }
         ]
     }
+```
 - This is returning what we inserted in the previous step.
-## Action with External Dependency
+### Action with External Dependency
 
 The `submit-vote`  action has external dependency. Actions with external dependencies can not be created using the web cli. We will use the terminal for this.
 
 - Change directory in the submit-vote folder. Install the dependencies.
+    ```
     npm install
+    ```
 - Package the files into a zip. 
+    ```
     zip -r submit-vote.zip *
+    ```
 - The `zip` command will only work in a MacOS or linux environment. For windows users use a third party tool like 7zip or look at this [stack-overflow answer](https://stackoverflow.com/a/18180154/10272405) 
 - Create the action as you would. 
     ibmcloud fn action create workshop/submit-vote submit-vote.zip --kind nodejs:10
@@ -512,25 +534,26 @@ The `submit-vote`  action has external dependency. Actions with external depende
 MacOS/Linux
 Windows CMD
 Windows Powershell
-
+```
     ibmcloud fn action update workshop/submit-vote `
     --param publish_key "YOUR PUBNUB PUBLISH KEY" ` 
     --param subscribe_key "YOUR PUBNUB SUBSCRIBE KEY" ` 
     --param secret_key "YOUR PUBNUB SECRET KEY" ` 
     --param username "CLOUDANT USERNAME" ` 
     --param password "CLOUDANT PASSWORD"
+```
 
 **Web UI**
 
 - Go to Functions. Click on the submit-vote action from the list of actions. Go to parameters. Add the parameters.
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZRImNo9ekYBhv_twFO%2F-LZRK-g2hsztb9PBjnrU%2FScreen%20Shot%202019-02-23%20at%204.46.41%20PM.png?alt=media&token=a6dce4c5-17e0-4e40-9eb6-3f8145c4467c)
 
-## Finish The Rest
+### Finish The Rest
 
 This leaves two function. `get-all-votes` and `handle-message`. This do not have any external dependencies. So feel free to create it from the cli or the web ui.
 The get-all-votes function needs two default parameter. Cloudant `username` and  `password`. We already went over how we can add those.
 
-## Note About External Dependency
+### Note About External Dependency
 
 If you look at the code we have a few functions with dependencies on `Cloudant` and one with `Openwhisk` . These were not considered external dependencies in IBM Cloud Functions. There are a bunch of packages that come preinstalled in the environment. 
 [See this page for a complete list](https://cloud.ibm.com/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_javascript_environments_10)
@@ -547,7 +570,7 @@ Some of the packages are-
 
 
 
-## API Gateway
+## Step 12: API Gateway
 
 We have our functions, but how do we use it in our app? API gateway is great way to manage access to our function. 
 **Get Question API**
@@ -590,10 +613,11 @@ You can follow almost all the steps for submit-vote function as well. Just for H
 If you are wondering why not get here as well. [Read This](https://stackoverflow.com/a/46614/10272405).
 
 
-## Putting It All Together
+## Step 13: Putting It All Together
 - In the src folder of the application, there is a file called `secret.template.json` , copy the file and save it as `secret.json` . 
 - The content of the `secret.json` file is as follows
-    {
+```
+{
       "SUBMIT_VOTE": "submit-vote-api-key",
       "SUBMIT_VOTE_URL": "submit-vote-api-url",
       "GET_QUESTION": "get-question-api-key",
@@ -603,7 +627,8 @@ If you are wondering why not get here as well. [Read This](https://stackoverflow
       "SUBSCRIBE_KEY": "pubnub-subscribe-key",
       "PUBLISH_KEY": "pubnub-publish-key",
       "SECRET_KEY": "pubnub-secret-key"
-    }
+}
+```
 - Replace the data with data collected on the previous steps.
 - If you are having trouble finding the PubNub keys take a look at the pubnub section of the Setup
 - The URL and API keys we got in the previous step
@@ -621,7 +646,7 @@ But wait I did promise you we will do that with twilio too.
 Lets do that in the next section.
 
 
-## Twilio Webhook
+## Step 14: Twilio Webhook
 
 For handling twilio messages we will convert the handle message function into a web action.
 
