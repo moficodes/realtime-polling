@@ -150,7 +150,7 @@ In this step we will create a lite cloudant database.
 
 
 ## Step 8: Twilio
-** !!!CAUTION **
+* !!!CAUTION *
 > Twilio has a trial account where they give 15$ credit to try twilio out. With that account you do not need a credit card but the credit will deplete as you use the trial account. Check the pricing per message on twilio for more information.
 
 - Sign Up for twilio. [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
