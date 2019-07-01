@@ -78,7 +78,7 @@ Some windows user may see an error saying *"Exception calling "DownloadString" w
 For the lab we will need a few plugins.
 
 - Cloud Functions
-    ibmcloud plugin install cloud-functions
+    ```ibmcloud plugin install cloud-functions```
 ## Step 4: Install Node NPM
 
 Install node
