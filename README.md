@@ -100,7 +100,7 @@ https://nodejs.org/en/download/
 ## Step 5: Setup Cloud Function
 
 IBM Cloud Functions should be setup with your account creation. 
-If for some reason the cloud foundry space doesn't get created automatically, [Setup IBM Cloud Functions] (https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp/ex0%20-%20setting%20up%20development%20environment)
+If for some reason the cloud foundry space doesn't get created automatically, [Setup IBM Cloud Functions](https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp/ex0%20-%20setting%20up%20development%20environment)
 
 Okay, Finally we are ready to get started with the workshop. If something is still missing work through this thorough bootcamp step by step. [https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp](https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp)
 
