@@ -65,11 +65,18 @@ In this section, you will create your own IBM Cloud account, and then get access
 ## Step 2: Install IBM Cloud CLI
 
 You use the [IBM Cloud CLI installer](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use) or the OS-specific shell installers below.
-[MacOS]
-[Linux]
-[Windows]
+MacOS
 
-    curl -fsSL https://clis.ng.bluemix.net/install/osx | sh
+```curl -fsSL https://clis.ng.bluemix.net/install/osx | sh```
+
+Linux
+
+```curl -fsSL https://clis.cloud.ibm.com/install/linux | sh```
+
+Window
+
+```iex(New-Object Net.WebClient).DownloadString('https://clis.cloud.ibm.com/install/powershell')```
+
 
 Some windows user may see an error saying *"Exception calling "DownloadString" with "1" argument(s): "The underlying connection was closed: An unexpected error occurred on a send." At line:1 char:1"*  Its an issue with Powershell Mutual TLS Setting. Use installer found on the link right above.
 
@@ -77,7 +84,7 @@ Some windows user may see an error saying *"Exception calling "DownloadString" w
 
 For the lab we will need a few plugins.
 
-1. Cloud Functions
+**Cloud Functions**
 To install run the following in your terminal.
 
 ```ibmcloud plugin install cloud-functions```
