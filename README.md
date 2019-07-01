@@ -102,28 +102,20 @@ https://nodejs.org/en/download/
 IBM Cloud Functions should be setup with your account creation. 
 If for some reason the cloud foundry space doesn't get created automatically, [Setup IBM Cloud Functions](https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp/ex0%20-%20setting%20up%20development%20environment)
 
-Okay, Finally we are ready to get started with the workshop. If something is still missing work through this thorough bootcamp step by step. [https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp](https://github.com/jthomas/openwhisk-workshops/tree/master/bootcamp)
-
 ## Step 6: Clone the repository
 
 In this step, we'll clone the realtime-polling  git repository. This repository contains both the web application and code for our functions that we will deploy.
 
     git clone https://github.com/moficodes/realtime-polling.git
 
-**Summary**
-State any closing remarks about the task or goal you described and its importance. Reiterate specific benefits the reader can expect from completing your tutorial. Recommend a next step (with link if possible) where they can continue to expand their skills after completing your tutorial.
-**Related links**
-Include links to other resources that may be of interest to someone who is reading your tutorial.
 
-
-
-## Step 6: PubNub
+## Step 7: PubNub
 1. Go to [https://dashboard.pubnub.com/signup](https://dashboard.pubnub.com/signup) to sign up for a PubNub acc. Their Free Tier should give us enough for our project and to tinker.
 2. Once you have signed up and logged in. You should then create a new App.
 3. In your app create a new keyset. Key set has a `pubkey`, a `subkey` and a `secretkey`. We will need this information in future steps.
 
 
-## Step 7: Cloudant Database
+## Step 8: Cloudant Database
 
 In this step we will create a lite cloudant database.
 
@@ -162,7 +154,7 @@ In this step we will create a lite cloudant database.
 10. Name the database `questions` Just like the database I already have. The reason we are doing this is when we create a question we would put it in here. And I did not want to check for database existing every-time when the function ran. This will make more sense when we look at the function. For now just take my word for it. It's also a place to view your data. If you ever need to look closely at your data this is where you will do so.
 
 
-## Step 8: Twilio
+## Step 9: Twilio
 **!!!CAUTION**
 > Twilio has a trial account where they give 15$ credit to try twilio out. With that account you do not need a credit card but the credit will deplete as you use the trial account. Check the pricing per message on twilio for more information.
 
@@ -188,7 +180,7 @@ In this step we will create a lite cloudant database.
 This is all we need for now. We will come back to it in a bit.
 
 
-## Step 9: Functions
+## Step 10: Functions
 
 I am using a total of 5 functions to manage the backend of this application. 
 There are no actual setup in this page. But you should read this to know what each of the functions do and why they are there.
@@ -304,7 +296,7 @@ This is what the handle-message function does.
 - Return a `Twiml` message with out message variable that twilio will interpret and send a message to out user.
 
 
-## Step 10: React
+## Step 11: React
 - In Setup you already should have the git repo cloned. Go into the `realtime-polling` folder that was cloned.
     cd realtime-polling
 - Copy the `secret.template.json` file to `secret.json`
@@ -334,7 +326,7 @@ This is what the handle-message function does.
 
 
 
-## Step 11: Create the Functions
+## Step 12: Create the Functions
 
 In this section we will create our function. We will see how to create function using both the web ui and cli.
 
@@ -586,7 +578,7 @@ Some of the packages are-
 
 
 
-## Step 12: API Gateway
+## Step 13: API Gateway
 
 We have our functions, but how do we use it in our app? API gateway is great way to manage access to our function. 
 **Get Question API**
@@ -629,7 +621,7 @@ You can follow almost all the steps for submit-vote function as well. Just for H
 If you are wondering why not get here as well. [Read This](https://stackoverflow.com/a/46614/10272405).
 
 
-## Step 13: Putting It All Together
+## Step 14: Putting It All Together
 - In the src folder of the application, there is a file called `secret.template.json` , copy the file and save it as `secret.json` . 
 - The content of the `secret.json` file is as follows
 ```
@@ -662,7 +654,7 @@ But wait I did promise you we will do that with twilio too.
 Lets do that in the next section.
 
 
-## Step 14: Twilio Webhook
+## Step 15: Twilio Webhook
 
 For handling twilio messages we will convert the handle message function into a web action.
 
