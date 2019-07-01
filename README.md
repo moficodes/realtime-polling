@@ -65,15 +65,16 @@ In this section, you will create your own IBM Cloud account, and then get access
 ## Step 2: Install IBM Cloud CLI
 
 You use the [IBM Cloud CLI installer](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use) or the OS-specific shell installers below.
-MacOS
+
+**MacOS**
 
 ```curl -fsSL https://clis.ng.bluemix.net/install/osx | sh```
 
-Linux
+**Linux**
 
 ```curl -fsSL https://clis.cloud.ibm.com/install/linux | sh```
 
-Window
+**Window**
 
 ```iex(New-Object Net.WebClient).DownloadString('https://clis.cloud.ibm.com/install/powershell')```
 
