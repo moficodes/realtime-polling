@@ -12,12 +12,6 @@ To be able to follow along or complete this tutorial/workshop you need the follo
 - I would be using IBM Cloud Functions that uses Openwhisk.
   - [Sign up for IBM Cloud](https://ibm.biz/BdYan6)
 
-**Or**
-
-- [Openwhisk Local Installation](https://openwhisk.apache.org/documentation.html#openwhisk_deployment) for testing
-  - For setting up openwhisk local you need
-    - [docker](https://docs.docker.com/docker-for-mac/)
-    - [docker-compose](https://docs.docker.com/docker-for-mac/)
 
 **Prorgramming Language**
 For this demo I am using **Node**. But with openwhisk you can write your functions in Node, Swift, Go, Python, Java, Ruby, Php and in the unlikely case none of the above is your language, you can create a docker image of your function and openwhisk will run that. So its safe to say openwhisk can run it all.
@@ -33,7 +27,7 @@ The real time portion of the app depends on PubNub. PubNub gives us a publish an
 
 # Estimated time
 
-From end to end this would take 60-90 min.
+From start to finish this should take around 60-90 min. Depending on readers familiarity with the technology used the time can be different.
 
 
 # Steps
@@ -79,7 +73,7 @@ You use the [IBM Cloud CLI installer](https://console.bluemix.net/docs/cli/refer
 ```iex(New-Object Net.WebClient).DownloadString('https://clis.cloud.ibm.com/install/powershell')```
 
 
-Some windows user may see an error saying *"Exception calling "DownloadString" with "1" argument(s): "The underlying connection was closed: An unexpected error occurred on a send." At line:1 char:1"*  Its an issue with Powershell Mutual TLS Setting. Use installer found on the link right above.
+>Some windows user may see an error saying *"Exception calling "DownloadString" with "1" argument(s): "The underlying connection was closed: An unexpected error occurred on a send." At line:1 char:1"*  Its an issue with Powershell Mutual TLS Setting. Use installer found on the link right above.
 
 ## Step 3: Install IBM CLI Plugins
 
