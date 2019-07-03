@@ -637,7 +637,9 @@ If you are wondering why not get here as well. [Read This](https://stackoverflow
 - If everything else worked, we should be able to now be able to search for our question that we created.
 - Type in the ID and press enter.
 - For the question we created the ID was "001"
+
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZS_uBUAQ6srol8ApO_%2F-LZSaj22eMktcIjCHBwE%2Fimage.png?alt=media&token=c88b92b9-d2c3-41a8-878d-a45cf2bd963c)
+
 
 - Open a new browser window, go to the question again then go to `Watch The Votes` , you will see a bar graph of the question and the options. Vote on one of the screen, you can see the numbers rise on the other screen. 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZS_uBUAQ6srol8ApO_%2F-LZSp1QpEwh0uBojJqqD%2Fimage.png?alt=media&token=bc748317-2651-4bf5-8b46-5f844e285392)
