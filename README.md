@@ -39,6 +39,7 @@ From start to finish this should take around 60-90 min. Depending on readers fam
 
 
 This is roughly how the app works.
+
 **Create Question:**
 Right now there is no UI for create question. We invoke the function directly to create a new question in the cloudant database.
 
