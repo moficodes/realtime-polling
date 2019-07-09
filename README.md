@@ -41,12 +41,16 @@ From start to finish this should take around 60-90 min. Depending on readers fam
 This is roughly how the app works.
 **Create Question:**
 Right now there is no UI for create question. We invoke the function directly to create a new question in the cloudant database.
+
 **Get Question:**
 Users query the database for a question with the id from the React UI. If the question exists they are taken to the question page.
+
 **Submit Vote:**
 User can then select a choice to vote for and Submit vote function is invoked. That sets the vote to the cloudant database and also publishes the vote to a pubnub channel that every one else is listening to. And would update the vote count in real time.
+
 **Get All Vote:**
 When users try to see the vote graphs, the first time we load up all the vote from the cloudant database. then start listening for any new vote.
+
 **Handle Message:**
 So our app works online. But can we make this work offline. Thats where twilio comes in. With twilio we will handle text messages sent to our app and respond appropriately.
 
@@ -153,7 +157,7 @@ In this step we will create a lite cloudant database.
 
 ## Step 9: Twilio
 **!!!CAUTION**
-> Twilio has a trial account where they give 15$ credit to try twilio out. With that account you do not need a credit card but the credit will deplete as you use the trial account. Check the pricing per message on twilio for more information.
+> Twilio has a trial account where they give **15$** credit to try twilio out. With that account you do not need a credit card but the credit will deplete as you use the trial account. Check the pricing per message on twilio for more information.
 
 - Sign Up for twilio. [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
 - In the create a project window change tab to select product.
@@ -188,6 +192,7 @@ They are:
 - get-all-votes
 - submit-vote
 - handle-message
+
 ### Task of each function
 
 **Create Question**
@@ -246,39 +251,10 @@ This function is used to deal with incoming message to twilio. The way this work
         "FromCountry": "US",
         "FromState": "NY",
         "FromZip": "10010",
-        "MessageSid": "XXXXXX",
-        "MessagingServiceSid": "XXXXX",
-        "NumMedia": "0",
-        "NumSegments": "1",
-        "SmsMessageSid": "XXXXX",
-        "SmsSid": "XXXXX",
-        "SmsStatus": "received",
         "To": "+12345678901",
-        "ToCity": "NEW YORK CITY",
-        "ToCountry": "US",
-        "ToState": "NY",
-        "ToZip": "",
-        "__ow_headers": {
-            "accept": "*/*",
-            "accept-encoding": "gzip",
-            "cache-control": "max-age=259200",
-            "cdn-loop": "cloudflare",
-            "cf-connecting-ip": "3.80.37.106",
-            "cf-ipcountry": "US",
-            "cf-ray": "4acaab98fc9f9fe4-IAD",
-            "cf-visitor": "{\"scheme\":\"https\"}",
-            "content-type": "application/x-www-form-urlencoded",
-            "host": "us-south.functions.cloud.ibm.com",
-            "user-agent": "TwilioProxy/1.1",
-            "x-forwarded-for": "3.80.37.106, 172.68.65.194",
-            "x-forwarded-host": "us-south.functions.cloud.ibm.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-global-k8fdic-transaction-id": "XXXXXX",
-            "x-real-ip": "172.68.65.194",
-            "x-request-id": "XXXXXX",
-            "x-twilio-signature": "3bE9I/FWo8q2JgGY46pnmsQclxU="
-        },
+          .
+          .
+          .
         "__ow_method": "post",
         "__ow_path": ""
     }
@@ -348,11 +324,12 @@ In this section we will create our function. We will see how to create function 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZQljGdJKw6gREQt-7y%2F-LZQmvXfo58H7rf5alG6%2Fimage.png?alt=media&token=71885aae-f1f9-4194-a68e-1c53016b1c3c)
 
 
-First time you would have to create package to get the package. For any other time, you can find the workshop package in the dropdown
+> First time you would have to create package to get the package. For any other time, you can find the workshop package in the dropdown
 
 - Click on Create
 - This would take us to the editor. 
-    /**
+   ```
+      /**
       *
       * main() will be run when you invoke this action
       *
@@ -364,6 +341,8 @@ First time you would have to create package to get the package. For any other ti
     function main(params) {
             return { message: 'Hello World' };
     }
+    ```
+    
 - We can invoke this action by clicking the Invoke button. 
 - We can also change input to pass in a params.
 - We can set default parameters from `Parameters` tab on the left.
@@ -454,10 +433,9 @@ First time you would have to create package to get the package. For any other ti
 - Invoke it once and you should  see something like this on the side.
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZQrySXgW6DQNc0qtUU%2F-LZQxtjSSDzKQA8qDknl%2Fimage.png?alt=media&token=626d85be-eb12-4caf-ab33-527a2a9835c7)
 
-- Invoke again however, you should see error. Because that was the logic we implemented.
+- Invoke again however, you should see error. Because that was the logic we implemented. If the ID already exists in the database it returns an error as we get here.
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LZ65VMcC6GKwiN_hLYh%2F-LZQxy34llq_osGfF0T9%2F-LZQy44335-8lHgfZGBu%2Fimage.png?alt=media&token=232513d9-5fbf-40b1-8306-c79462a99cba)
 
-- We will enable the api gateway in a second.
 ### From the CLI
 
 Let's create an action from the CLI. We will create the get-question action.
@@ -477,12 +455,18 @@ you can also do `ibmcloud login --sso` to login using the single sign on method 
 - Check you have the cloud functions plugin enabled.
 - Run `ibmcloud fn` and it should show the help page for IBM Cloud plug-in.
 - To see the actions in our account run
-    ibmcloud fn action list
+
+```
+ibmcloud fn action list
+```
 
 Output:
 
+```
     actions
     /thisismofi@gmail.com_dev/workshop/create-question                     private nodejs:10
+ ```   
+ 
 - We should see the other action we had created in the previous step.
 - To create the action lets change directory into the folder containing the `get-question.js` file. If you in the realtime-polling folder, it is under `function/get-question` . 
     ```
@@ -496,7 +480,9 @@ Output:
     ibmcloud fn action update workshop/get-question --param username "YOUR-CLOUDANT-USERNAME-HERE" --param password "YOUR-CLOUDANT-PASSWORD-HERE"
     ```
 - We can now invoke the action from the CLI as well
+    ```
     ibmcloud fn action invoke workshop/get-question --param id 001
+    ```
 
 Output:
 ```
@@ -536,16 +522,9 @@ The `submit-vote`  action has external dependency. Actions with external depende
 - You can setup the default parameters from either the CLI or the Web UI.
 
 **CLI**
-MacOS/Linux
-Windows CMD
-Windows Powershell
+
 ```
-    ibmcloud fn action update workshop/submit-vote `
-    --param publish_key "YOUR PUBNUB PUBLISH KEY" ` 
-    --param subscribe_key "YOUR PUBNUB SUBSCRIBE KEY" ` 
-    --param secret_key "YOUR PUBNUB SECRET KEY" ` 
-    --param username "CLOUDANT USERNAME" ` 
-    --param password "CLOUDANT PASSWORD"
+    ibmcloud fn action update workshop/submit-vote --param publish_key "YOUR PUBNUB PUBLISH KEY" --param subscribe_key "YOUR PUBNUB SUBSCRIBE KEY" --param secret_key "YOUR PUBNUB SECRET KEY" --param username "CLOUDANT USERNAME" --param password "CLOUDANT PASSWORD"
 ```
 
 **Web UI**
@@ -562,22 +541,12 @@ The get-all-votes function needs two default parameter. Cloudant `username` and 
 
 If you look at the code we have a few functions with dependencies on `Cloudant` and one with `Openwhisk` . These were not considered external dependencies in IBM Cloud Functions. There are a bunch of packages that come preinstalled in the environment. 
 [See this page for a complete list](https://cloud.ibm.com/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_javascript_environments_10)
-Some of the packages are-
-
-- [async v2.6.1](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
-- [mongodb v3.1.12](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
-- [mysql v2.16.0](https://www.npmjs.com/package/mysql) - This is a node.js driver for mysql.
-- [openwhisk v3.18.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
-- [@cloudant/cloudant v3.0.2](https://www.npmjs.com/package/@cloudant/cloudant) - This is the official Cloudant library for Node.js.
-- [redis v2.8.0](https://www.npmjs.com/package/redis) - This is a complete and feature rich Redis client for Node.js.
-- [request v2.88.0](https://www.npmjs.com/package/request) - Request is designed to be the simplest way possible to make HTTP calls.
-- [twilio v3.27.1](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
-
 
 
 ## Step 13: API Gateway
 
 We have our functions, but how do we use it in our app? API gateway is great way to manage access to our function. 
+
 **Get Question API**
 
 - From IBM Cloud dashboard page, go to functions. 
