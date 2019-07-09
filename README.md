@@ -12,15 +12,18 @@ To be able to follow along or complete this tutorial/workshop you need the follo
 - I would be using IBM Cloud Functions that uses Openwhisk.
   - [Sign up for IBM Cloud](https://ibm.biz/BdYan6)
 
-
 **Prorgramming Language**
 For this demo I am using **Node**. But with openwhisk you can write your functions in Node, Swift, Go, Python, Java, Ruby, Php and in the unlikely case none of the above is your language, you can create a docker image of your function and openwhisk will run that. So its safe to say openwhisk can run it all.
+
 **Cloudant Database**
 Lite version of CLoudant available from IBM Cloud.
+
 **React**
 For front end I am using React. This will be a very simple use of react. We wont go much deep into the use of reactjs in this workshop.
+
 **Twilio**
 Twilio is a messaging platform that we will make use of to collect votes. There are many other things twilio can do. Visit their website to find out more.
+
 **PubNub**
 The real time portion of the app depends on PubNub. PubNub gives us a publish and subscribe platform where we can get real time data streaming in our app.
 
